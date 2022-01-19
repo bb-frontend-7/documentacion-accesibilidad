@@ -1,9 +1,35 @@
 # Generalidades.
 
+## Tabla de contenido.
+
 1. [Imágenes y texto alternativo](#imágenes-y-texto-alternativo)
+    - [Consideraciones](#consideraciones)
+    - [Excepciones](#excepciones)
+    - [Accesibilidad AAA](#accesibilidad-aaa)
 2. [Contraste](#contraste)
-
-
+3. [Uso del color](#uso-del-color)
+4. [Navegación por teclado](#navegación-por-teclado)
+    - [Estado de focus](#estado-de-focus)
+    - [Indicador de focus](#indicador-de-focus)
+    - [Atributo `tabindex`](#atributo-tabindex)
+5. [Esconder visualmente un elemento (pero no de lectores de pantalla)](#esconder-visualmente-un-elemento-pero-no-de-lectores-de-pantalla)
+6. [Creación de inputs](#creación-de-inputs)
+7. [Zoom en el sitio](#zoom-en-el-sitio)
+8. [Visualización del texto](#visualización-de-textos)
+    - [Recomendaciones sobre interlineado](#recomendaciones-sobre-interlineado)
+    - [Recomendaciones sobre espacios entre párrafos](#recomendaciones-sobre-espacios-entre-párrafos)
+9. [Animaciones](#animaciones)
+    - [media query `prefers-reduced-motion`](#media-query-prefers-reduced-motion)
+    - [Desactivar animaciones manualmente](#desactivar-animaciones-manualmente)
+    - [Flashes en pantalla](#flashes-en-pantalla)
+10. [Uso de encabezados](#uso-de-encabezados)
+11. [Uso de íconos](#uso-de-íconos)
+    - [Hacer accesible a un SVG como ícono](#hacer-accesible-a-un-svg-como-ícono)
+12. [Uso de HTML para mejorar legibilidad](#uso-de-html-para-mejorar-legibilidad)
+    - [El atributo `lang`](#el-atributo-lang)
+    - [El tag `abbr`](#el-tag-abbr)
+13. [Especificaciones para dispositivos touch](#especificaciones-para-dispositivos-touch)
+---
 ## Imágenes y texto alternativo.
 
 Las imágenes deben de llevar un texto alternativo que permita dar contexto al usuario sobre la imagen en caso de que no pueda cargar o para que los lectores de pantalla puedan decirle a los  usuarios invidentes de qué trata la imagen. Esto va en el atributo `alt` del tag de imagen.
