@@ -359,7 +359,7 @@ Una de las condiciones para cumplir el nivel de accesibilidad AAA es que debe ha
 ```
 ---
 
-## Especificaciones para teléfonos móviles
+## Especificaciones para dispositivos touch
 
 Por razones de usabilidad es importante tener en cuenta ciertas consideraciones al momento de diseñar para teléfonos móviles como las siguientes:
 
