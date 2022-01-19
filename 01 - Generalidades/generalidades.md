@@ -88,7 +88,7 @@ No se puede depender sólo del color para darle feedback al usuario sobre algo q
 - En el caso de qe sea un color de fondo o de texto que se use para identificar algún error o instrucción. Siempre se pueden acompañar de otros elementos como íconos o texto. Siempre manteniendo en cuenta los estándares de contraste.
 - Si es un gráfico o una imagen que se usa para mostrar información específica y depende del color, es importante añadir patrones para poder mejorar su visibilidad.
 
-![Un gráfico de barras en el que cada barra tiene un patrón de diseño distinto](https://www.audioeye.com/static/5a08682a9aabd0a665aa4240d42bd7c4/73e0d/3dfedb33-d236-48c7-9d25-93ff03f461e2_Designing-for-Color-Blindness-Textures-Patterns.webp)
+  ![Un gráfico de barras en el que cada barra tiene un patrón de diseño distinto](https://www.audioeye.com/static/5a08682a9aabd0a665aa4240d42bd7c4/73e0d/3dfedb33-d236-48c7-9d25-93ff03f461e2_Designing-for-Color-Blindness-Textures-Patterns.webp)
 
 - Ante la duda de si algo se ve bien o no para las personas con distintos grados de daltonismo, se puede usar la pestaña de **Rendering** de DevTools. Para verla, una vez abierto DevTools se hace clic en los 3 puntos a la parte derecha, luego a *Más herramientas* y luego se selecciona *Rendering*.
 
@@ -285,28 +285,28 @@ Podemos usar esta media query de dos maneras:
 
 1. **Usar la opción del valor `no-preference` para poner las animaciones dentro de esta:** así nos aseguramos que en el caso de que el usuario tenga las animaciones desactivadas no se muestren y sólo se vean en caso de que no haya preferencia algúna. Un ejemplo puede ser el siguiente:
 
-```css
-@media (prefers-reduced-motion) {
-  .cta {
-    animation: pulse 1s linear infinite both;
-  }
-}
-```
+    ```css
+    @media (prefers-reduced-motion) {
+      .cta {
+        animation: pulse 1s linear infinite both;
+      }
+    }
+    ```
 
 2. **Usar un snippet de código dentro de la preferencia `reduce` para desactivar todas las animaciones:** otra opción para respetar las preferencias es usar el siguiente código para desactivar todas las animaciones si el usuario ha desactivado las animaciones.
 
-```css
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-```
+    ```css
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    ```
 
 El `!important` se asegura que sobreescriba todas las animaciones existentes. Esto puede ser útil pero es importante recordar que el hecho de que el usuario prefiera una experiencia reducida de animaciones **No quiere decir que no se puedan usar animaciones en absoluto**.
 
@@ -320,7 +320,7 @@ Para cumplir el estándar AAA de accesibilidad, es necesario generar una opción
 
 Algunas animaciones pueden requerir el uso de flashes pero es importante que *ninguna animación tenga más de 3 flashes en el paso de un segundo*. De otro modo **esto puede causar convulsiones en algunos usuarios** por lo que respetar esto es **muy** importante.
 
-> Entíendase por flashes animaciones como parpadeo o cambios de colores. No pueden haber más de 3 por segundo.
+> Para esta norma se entiende por flash cualquier cambio en la luminosidad de 10% o más. Es particularmente importante evadir cualquier cambio de luminosidad que implique el uso de un rojo con alta saturación.
 
 ---
 ## Uso de encabezados
@@ -363,22 +363,22 @@ Para usar un SVG como ícono y hacerlo accesible hay que tener dos cosas en cuen
 
 - **Usar el tag `title`:** El tag `title` será leido por lectores de pantalla para darle contexto a la gente que use lectores de pantalla para navegar por un sitio, de la misma manera que el atributo `alt` lo hace para las imágenes. También es posible usar el atributo `aria-labelledby` para hacer que el lector de pantalla use el tag `title` para describir el SVG.
 
-*Sin usar `aria-labelledby`*
+    *Sin usar `aria-labelledby`*
 
-```html
-<svg version="1.1" width="300" height="200" role="img">
-  <title>Green rectangle</title>
-  <rect width="75" height="50" rx="20" ry="20" fill="#90ee90" stroke="#228b22" stroke-fill="1" />
-</svg>
-```
-*Usando `aria-labelledby`*
+    ```html
+    <svg version="1.1" width="300" height="200" role="img">
+      <title>Green rectangle</title>
+      <rect width="75" height="50" rx="20" ry="20" fill="#90ee90" stroke="#228b22" stroke-fill="1" />
+    </svg>
+    ```
+    *Usando `aria-labelledby`*
 
-```html
-<svg version="1.1" width="300" height="200" aria-labelledby="title" role="img">
-  <title id="title">Green rectangle</title>
-  <rect width="75" height="50" rx="20" ry="20" fill="#90ee90" stroke="#228b22" stroke-fill="1" />
-</svg>
-```
+    ```html
+    <svg version="1.1" width="300" height="200" aria-labelledby="title" role="img">
+      <title id="title">Green rectangle</title>
+      <rect width="75" height="50" rx="20" ry="20" fill="#90ee90" stroke="#228b22" stroke-fill="1" />
+    </svg>
+    ```
 
 ---
 
