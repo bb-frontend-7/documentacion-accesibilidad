@@ -502,7 +502,11 @@ Adicionalmente, si se desea escribir un color de un elemento, se pueden usar las
 - **LinkText:** texto de links no visitados que no estén activos.
 - **Mark:** color de fondo de texto que esté resaltado (es posible hacer eso usando la etiqueta de HTML `mark`)
 - **MarkText:** color del texto que ha sido marcado (de nuevo, con la etiqueta HTML `mark`)
-- **VisitedText:** texto de links visitados.
+- **VisitedText:** texto de links visitados
+
+> Es importante que estos cambios de colores sólo se deberían hacer para hacer pequeños ajustes con el fin de hacer la página más consistente en estos métodos.
+
+> Al final del día el Modo de Alto Contraste es algo que prioriza la funcionalidad sobre el diseño y debemos depende más de temas como usar las etiquetas de HTML correctas y usar bordes, outlines y subrayados transparentes para que el sitio se vea bien ahí.
 
 
 
