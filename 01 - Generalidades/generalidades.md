@@ -432,7 +432,81 @@ Por razones de usabilidad es importante tener en cuenta ciertas consideraciones 
   }
   ```
 
-  
+---
+## Modo de Alto Contraste de Windows
+
+El Modo de Alto Contraste de Windows es una característica de accesibilidad que sobreescribe todos los colores en pantalla por tonos que tienen un contraste alto. Para activarlo, desde el menú de Windows seleccionamos *Configuración*, luego *Accesibilidad* y luego vamos al modo de *Contraste alto* y seleccionamos el que queremos usar.
+
+Hay personas que lo usan por distintas razones: mejora la legibilidad del sitio, reduce la carga visual al eliminar varios elementos de un sitio. Algunos usuarios incluso usan este modo para escoger colores que tengan un *menor* contraste de lo habitual, lo cual ayuda a usuarios con sensibilidad a la luz o migrañas.
+
+### Consideraciones
+
+Es importante tener ciertas consideraciones al momento de diseñar para un Modo de Alto Contraste.
+
+- Este modo reemplazará todos los colores de fondo y texto que tengamos por los que se usa este modo. Así que es importante mantener un HTML semántico para asegurarse de no generar confusión al usuario al momento de usar este modo. Por ejemplo un `button` y un `div` que ejecuten la misma función al hacerles clic van a lucir diferentes en un modo de alto contraste.
+- Es mala práctica usar reglas de CSS como `outline: none` a elementos en estado de focus porque en el modo de alto contraste va a ser el **único** indicador funcional que ayude a darle ese feedback visual al usuario. En su lugar se puede usar `outline-color: transparent` que tendrá el mismo efecto visual pero que en el modo de alto contraste se verá sin problemas.
+- Por esto mismo, a elementos que necesitan diferenciarse del fondo como un `button` no debería usarse la regla `border: none`, ya que en este modo se mezclarán con el background y dificultará la lectura. En su lugar se debería usar `border-color: transparent` y así se distinguirá del fondo.
+- Es buena práctica dejar los subrayados a los tags `a` en este modo, incluso si bajo condiciones normales no usamos el subrayado. Un buen modo de solucionar esto es usando la propiedad de CSS `text-decoration-color: transparent`.
+- Las barras de desplazamiento personalizadas **no se van a ver en el Modo de Alto Contraste** por lo que es importante reconsiderar si es necesario agregarles estos estilos.
+
+### Media query `forced-colors`
+
+Aunque por regla general debería dejarse que el sistema decida los colores bajo este método, podemos usar la media query `forced-colors` para añadir reglas adicionales que apliquen bajo el Modo de Alto Contraste. Para agregar reglas en este modo se escribiría de la siguiente manera:
+
+```css
+@media screen and (forced-colors: active) {
+  /* Reglas de CSS  */
+}
+```
+
+No todas las reglas de CSS van a funcionar en este modo, o al menos no del modo esperado, por ejemplo las siguientes sólamente van tomar en cuenta los colores que se usen en este modo:
+
+- `color`
+- `background-color`
+- `text-decoration-color`
+- `text-emphasis-color`
+- `border-color`
+- `outline-color`
+- `column-rule-color`
+- `-webkit-tap-highlight-color`
+- SVG `fill` attribute
+- SVG `stroke` attribute
+
+Y las siguientes reglas van a tener los siguientes valores:
+
+|**Regla**         |**Valor**                                 |
+|------------------|------------------------------------------|
+|`box-shadow`      |`none`                                    |
+|`text-shadow`     |`none`                                    |
+|`background-image`|`none` excepto para valores que sean `url`|
+|`color-scheme`    |`light dark`                              |
+|`scrollbar-color` |`auto`                                    |
+
+Además de las reglas estándar de CSS tenemos una regla y unas propiedades nuevas por usar. La regla en cuestión es `forced-color-adjust: none` que hará que los colores de este elemento *no* cambien cuando se esté en el modo de alto contraste. 
+
+> Este cambio sólo se debe hacer si **el color de este elemento es usado para transmitir información importante**.
+
+Adicionalmente, si se desea escribir un color de un elemento, se pueden usar las siguiente palabras reservadas en propiedas que tengan que ver con color (como `border-color` o `color` para los textos):
+
+- **ActiveText:** links activos.
+- **ButtonBorder:** color de borde de los botones.
+- **ButtonFace:** color de background de botones.
+- **ButtonText:** color del texto de los botones.
+- **Canvas:** color de fondo del sitio.
+- **CanvasText:** color del texto del sitio (en general).
+- **Field:** color de fondo de inputs.
+- **FieldText:** texto de inputs.
+- **GrayText:** texto de campos deshabilitados.
+- **Highlight:** color de fondo de texto seleccionado.
+- **HighlightText:** color del texto seleccionado.
+- **LinkText:** texto de links no visitados que no estén activos.
+- **Mark:** color de fondo de texto que esté resaltado (es posible hacer eso usando la etiqueta de HTML `mark`)
+- **MarkText:** color del texto que ha sido marcado (de nuevo, con la etiqueta HTML `mark`)
+- **VisitedText:** texto de links visitados.
+
+
+
+
 
 
 
