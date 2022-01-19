@@ -6,29 +6,30 @@
     - [Consideraciones](#consideraciones)
     - [Excepciones](#excepciones)
     - [Accesibilidad AAA](#accesibilidad-aaa)
-2. [Contraste](#contraste)
-3. [Uso del color](#uso-del-color)
-4. [Navegación por teclado](#navegación-por-teclado)
+1. [Contraste](#contraste)
+1. [Uso del color](#uso-del-color)
+1. [Navegación por teclado](#navegación-por-teclado)
     - [Estado de focus](#estado-de-focus)
     - [Indicador de focus](#indicador-de-focus)
     - [Atributo `tabindex`](#atributo-tabindex)
-5. [Esconder visualmente un elemento (pero no de lectores de pantalla)](#esconder-visualmente-un-elemento-pero-no-de-lectores-de-pantalla)
-6. [Creación de inputs](#creación-de-inputs)
-7. [Zoom en el sitio](#zoom-en-el-sitio)
-8. [Visualización del texto](#visualización-de-textos)
+1. [Esconder visualmente un elemento (pero no de lectores de pantalla)](#esconder-visualmente-un-elemento-pero-no-de-lectores-de-pantalla)
+1. [Creación de inputs](#creación-de-inputs)
+1. [Zoom en el sitio](#zoom-en-el-sitio)
+1. [Visualización del texto](#visualización-de-textos)
     - [Recomendaciones sobre interlineado](#recomendaciones-sobre-interlineado)
     - [Recomendaciones sobre espacios entre párrafos](#recomendaciones-sobre-espacios-entre-párrafos)
-9. [Animaciones](#animaciones)
+1. [Overflow](#overflow)
+1. [Animaciones](#animaciones)
     - [media query `prefers-reduced-motion`](#media-query-prefers-reduced-motion)
     - [Desactivar animaciones manualmente](#desactivar-animaciones-manualmente)
     - [Flashes en pantalla](#flashes-en-pantalla)
-10. [Uso de encabezados](#uso-de-encabezados)
-11. [Uso de íconos](#uso-de-íconos)
+1. [Uso de encabezados](#uso-de-encabezados)
+1. [Uso de íconos](#uso-de-íconos)
     - [Hacer accesible a un SVG como ícono](#hacer-accesible-a-un-svg-como-ícono)
-12. [Uso de HTML para mejorar legibilidad](#uso-de-html-para-mejorar-legibilidad)
+1. [Uso de HTML para mejorar legibilidad](#uso-de-html-para-mejorar-legibilidad)
     - [El atributo `lang`](#el-atributo-lang)
     - [El tag `abbr`](#el-tag-abbr)
-13. [Especificaciones para dispositivos touch](#especificaciones-para-dispositivos-touch)
+11. [Especificaciones para dispositivos touch](#especificaciones-para-dispositivos-touch)
 ---
 ## Imágenes y texto alternativo.
 
@@ -82,14 +83,14 @@ Para poder medir el contraste entre el texto y el background se puede usar [este
 
 ## Uso del color
 
-No se puede depender sólo del color para darle feedback al usuario sobre algo que ocurre en pantalla. Hay usuarios que perciben el color diferente por distintos tipos de ceguera del color. Por ello es importante tener en cuenta las siguientes consideraciones
+No se puede depender sólo del color para darle feedback al usuario sobre algo que ocurre en pantalla. Hay usuarios que perciben el color diferente por distintos tipos de daltonismo. Por ello es importante tener en cuenta las siguientes consideraciones
 
 - En el caso de qe sea un color de fondo o de texto que se use para identificar algún error o instrucción. Siempre se pueden acompañar de otros elementos como íconos o texto. Siempre manteniendo en cuenta los estándares de contraste.
 - Si es un gráfico o una imagen que se usa para mostrar información específica y depende del color, es importante añadir patrones para poder mejorar su visibilidad.
 
 ![Un gráfico de barras en el que cada barra tiene un patrón de diseño distinto](https://www.audioeye.com/static/5a08682a9aabd0a665aa4240d42bd7c4/73e0d/3dfedb33-d236-48c7-9d25-93ff03f461e2_Designing-for-Color-Blindness-Textures-Patterns.webp)
 
-- Ante la duda de si algo se ve bien o no para las personas con distintos grados de ceguera del color, se puede usar la pestaña de **Rendering** de DevTools. Para verla, una vez abierto DevTools se hace clic en los 3 puntos a la parte derecha, luego a *Más herramientas* y luego se selecciona *Rendering*.
+- Ante la duda de si algo se ve bien o no para las personas con distintos grados de daltonismo, se puede usar la pestaña de **Rendering** de DevTools. Para verla, una vez abierto DevTools se hace clic en los 3 puntos a la parte derecha, luego a *Más herramientas* y luego se selecciona *Rendering*.
 
   ![Pantallazo de Chrome DevTools mostrando el menú de más herramientas y luego el de Rendering](/images/DevTools.png)
 
@@ -141,7 +142,7 @@ Hay algunos elementos que necesitan ser navegables por teclado que por defecto n
 
 Al usar la regla `display: none` o `visibility: hidden` con CSS escondemos un elemento tanto de la pantalla como de lectores de pantalla. También podemos usar el atributo de HTML `aria-hidden="true"` para esconder un elemento de lectores de pantalla pero no del sitio.
 
-La siguiente clase permite esconder elementos de forma visual, pero que sigan siendo visibles de lectores de pantalla
+La siguiente clase permite esconder elementos de forma visual, pero que sigan siendo visible de lectores de pantalla
 
 ```css
 .sr-only {
@@ -257,14 +258,28 @@ Al aplicar la clase `flow` a un elemento padre, todos sus elementos hijos salgo 
 > Se requiere experimentación sobre el 2em en pantallas más pequeñas.
 
 ---
+## Overflow
 
+Para cumplir el estándar de accesibilidad AA, el contenido debe ser presentado sin que represente una pérdida de funcionalidad o de información sin que haya un scroll en contenedores de estos tamaños:
+
+- No debe haber scroll horizontal si el contenedor mide *256 px* o menos.
+- No debe haber scroll vertical si el contenedor mide *320 px* o menos.
+
+Lo anterior no aplica a cierto contenido como:
+
+- Mapas y diagramas.
+- Presentaciones.
+- Juegos.
+- Interfaces en las que se necesite mantenerse visible una barra de herramientas para interactuar con el sitio.
+
+---
 ## Animaciones.
 
 Las animaciones son una parte importante de la elaboración de un sitio, pero hay usuarios que por distintas razones (vértigo, migrañas, problemas en su sistema vestibular) deciden desactivar las animaciones de su computador. Dicha configuración debemos respetarla y para ello tenemos dos acercamientos
 
 ### Media query `prefers-reduced-motion`.
 
-CSS nos permite respetar dichas preferencias usando la media query `prefers-reduced-motion`. Esta media query tiene dos valores: `no-preference` o `reduce` y nos permite colocar reglas de CSS en caso dentro de esta en caso de que el usuario no tenga preferencias sobre la animación o en caso de que tenga la animación desactivada, respectivamente.
+CSS nos permite respetar dichas preferencias usando la media query `prefers-reduced-motion`. Esta media query tiene dos valores: `no-preference` o `reduce` y nos permite colocar reglas de CSS dentro de esta en caso de que el usuario no tenga preferencias sobre la animación o en caso de que tenga la animación desactivada, respectivamente.
 
 Podemos usar esta media query de dos maneras:
 
@@ -305,16 +320,18 @@ Para cumplir el estándar AAA de accesibilidad, es necesario generar una opción
 
 Algunas animaciones pueden requerir el uso de flashes pero es importante que *ninguna animación tenga más de 3 flashes en el paso de un segundo*. De otro modo **esto puede causar convulsiones en algunos usuarios** por lo que respetar esto es **muy** importante.
 
+> Entíendase por flashes animaciones como parpadeo o cambios de colores. No pueden haber más de 3 por segundo.
+
 ---
 ## Uso de encabezados
 
 El uso de los tags de `<h1>` a `<h6>` *no debería hacerse de acuerdo al tamaño del texto, si no de acuerdo a la estructura que estos creen.
 
-Los lectores de pantalla generan algo llamado un *outline* o *esquema* con base en los encabezados de un sitio. Una buena analogía de esto sería una tabla de contenido. Un uso correcto de los encabezados permite generar una tabla de contenido que permita a los usuarios de lectores de pantalla navegar rápidamente a las seccioes que quieren visitar. Un ejemplo de como se ve un outline es este de aquí:
+Los lectores de pantalla generan algo llamado un *outline* o *esquema* con base en los encabezados de un sitio. Una buena analogía de esto sería una tabla de contenido. Un uso correcto de los encabezados permite generar una tabla de contenido que permita a los usuarios de lectores de pantalla navegar rápidamente a las secciones que quieren visitar. A continuación se puede ver como luce un buen outline de un sitio:
 
 ![Vistazo de un outline de un sitio a través de las herramientas de desarrollo de un navegador llamado Polypane](https://i.imgur.com/ry4rsHQ.png)
 
-Como se puede ver en el screenshot, los encabezados `<h1>`, `<h2>` y `<h3>` forman una estructura lógica de cómo es el contenido del sitio y de esto depende un usuario que navega el sitio por un lector de pantalla para encontrar el contenido que le interesa.
+Como se puede ver en el screenshot, los encabezados `<h1>`, `<h2>` y `<h3>` forman una estructura lógica de cómo es el contenido del sitio y de esto depende un usuario que navega el sitio con un lector de pantalla para encontrar el contenido que le interesa.
 
 Por esta razón, *usar los encabezados con base en su tamaño es un error* y por lo tanto debería tenerse en cuenta su valor semántico para generar un esquema de navegación adecuado. Para manejar el tema del tamaño **es mejor usar CSS en lugar de recurrir a los encabezados únicamente por su tamaño**.
 
@@ -326,7 +343,7 @@ Es posible que para crear una buena estructura tengamos que añadir encabezados 
 
 Hay distintas maneras de agregar íconos a los sitios y algunos son más accesibles que otros. Cosas como **Material Icons** o **Font Awesome** que usan texto para renderizar íconos no son particularmente accesibles por ciertas razones:
 
-- Los lectores de pantalla *pueden* leer el contenido de esos textos que se usan, lo que puede generar una experiencia incómoda. Esto se puede mitigar con un `aria-hidden="true"` en el elemento donde se encuentre el ícno.
+- Los lectores de pantalla *pueden* leer el contenido de esos textos que se usan, lo que puede generar una experiencia incómoda. Esto se puede mitigar con un `aria-hidden="true"` en el elemento donde se encuentre el ícono.
 - Hay gente con dislexia que reemplaza la fuente de la página con la propia, y este reemplazo también afecta a las usadas con estos generadores de íconos, lo cual genera una experiencia frustrante.
 - En el caso de que no se puedan renderizar, la opción alternativa que muestra no es muy útil, lo cual quita contexto sobre qué hace el elemento con el ícono, tal como se puede ver acá.
 
