@@ -29,7 +29,10 @@
 1. [Uso de HTML para mejorar legibilidad](#uso-de-html-para-mejorar-legibilidad)
     - [El atributo `lang`](#el-atributo-lang)
     - [El tag `abbr`](#el-tag-abbr)
-11. [Especificaciones para dispositivos touch](#especificaciones-para-dispositivos-touch)
+1. [Especificaciones para dispositivos touch](#especificaciones-para-dispositivos-touch)
+1. [Modo de Alto Contraste de Windows](#modo-de-alto-contraste-de-windows)
+    - [Consideraciones](#consideraciones-1)
+    - [media query `forced-colors`](#media-query-forced-colors)
 ---
 ## Imágenes y texto alternativo.
 
