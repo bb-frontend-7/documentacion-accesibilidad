@@ -1,6 +1,7 @@
 # Generalidades.
 
-1. [Imágenes y texto alternativo](#-imagenes-y-texto-alternativo)
+1. [Imágenes y texto alternativo](#imágenes-y-texto-alternativo)
+2. [Contraste](#contraste)
 
 
 ## Imágenes y texto alternativo.
