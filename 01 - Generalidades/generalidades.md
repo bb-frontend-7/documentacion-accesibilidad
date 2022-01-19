@@ -1,9 +1,9 @@
 # Generalidades.
 
-1. [Imágenes y texto alternativo](#imagenes-y-texto-alternativo)
+1. [Imágenes y texto alternativo](#-imagenes-y-texto-alternativo)
 
 
-## [#](#imagenes-y-texto-alternativo) Imágenes y texto alternativo.
+## Imágenes y texto alternativo.
 
 Las imágenes deben de llevar un texto alternativo que permita dar contexto al usuario sobre la imagen en caso de que no pueda cargar o para que los lectores de pantalla puedan decirle a los  usuarios invidentes de qué trata la imagen. Esto va en el atributo `alt` del tag de imagen.
 
