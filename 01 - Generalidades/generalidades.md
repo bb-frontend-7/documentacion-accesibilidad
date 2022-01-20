@@ -168,6 +168,49 @@ Hay algunas razones por la que querramos hacer esto:
 - Cuando se necesite usar algo para lo que el atributo de HTML `aria-label` funcione, pero que se necesite ser traducido. Los lectores de pantalla tienen problemas traduciendo un `aria-label` a otros idiomas, cosa que no pasa con un elemento de HTML.
 
 ---
+## `aria-label` y `aria-labelledby`
+
+En ciertos casos, como en un botón donde hay sólamente un ícono, es necesario agregar alguna etiqueta para que los lectores de pantalla puedan reconocer un elemento. Un modo de hacerlo es esconder un elemento de forma visual como se hizo anteriormente, pero otro modo es usando los atributos de HTML `aria-label` y `aria-labelledby` que agregan ese contexto a lectores de pantalla.
+
+### `aria-label`
+
+Este atributo permite etiquetar elementos para los lectores de pantalla. Un ejemplo de como sería su uso es el siguiente:
+
+```html
+<button aria-label="Reproducir">
+  <svg aria-hidden="true">
+
+  </svg>
+</button>
+```
+En este caso el botón sería anunciado como: *Reproducir, botón*
+
+### `aria-labelledby`
+
+Este atributo usa un elemento con un ID específico para etiquetar un elemento para lectores de pantalla. Un ejemplo de esto sería el siguiente.
+
+```html
+<section aria-labelledby="section-title">
+  <h2 id="section-title">Actividades</h2>
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</section>
+```
+
+Un lector de pantalla leería esto como: *Actividades, sección* y luego ignoraría el `h2` (por ser usado para etiquetar la sección) y proseguiría a anunciar los items de la lista.
+
+### Cuándo usar cada caso
+
+Ambos tienen la misma función, la mayor diferencia entre el uno y el otro es que el `aria-labelledby` permite reducir redundancias en caso de que la etiqueta de dicho elemento coincida con un elemento interno de este (como vimos en el ejemplo de `section`).
+
+Es importante recordar que en ciertos elementos `aria-label` va a reemplazar el contenido interno, y en todos los casos `aria-labelledby` va a reemplazar `aria-label`. **No se deben usar ambas en el mismo elemento**
+
+Algunos elementos no deberían tener `aria-label`. Para más información sobre el tema se puede consultar [la tabla dentro de este artículo](https://html5accessibility.com/stuff/2020/11/07/not-so-short-note-on-aria-label-usage-big-table-edition/).
+
+---
 ## Creación de inputs.
 
 Siempre que se cree un input es necesario agregar un label. De otro modo los lectores de pantalla no van a darle información suficiente al usuario para que sepa qué es lo que debe diligenciar. Las semánticas aceptadas para esto son las siguientes:
