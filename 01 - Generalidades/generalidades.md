@@ -13,6 +13,12 @@
     - [Indicador de focus](#indicador-de-focus)
     - [Atributo `tabindex`](#atributo-tabindex)
 1. [Esconder visualmente un elemento (pero no de lectores de pantalla)](#esconder-visualmente-un-elemento-pero-no-de-lectores-de-pantalla)
+1. [`aria-label` y `aria-labelledby`](#aria-label-y-aria-labelledby)
+
+    - [`aria-label`](#aria-label)
+    - [`aria-labelledby`](#aria-labelledby)
+    - [Cuándo usar cada caso](#cuándo-usar-cada-caso)
+
 1. [Creación de inputs](#creación-de-inputs)
 1. [Zoom en el sitio](#zoom-en-el-sitio)
 1. [Visualización del texto](#visualización-de-textos)
