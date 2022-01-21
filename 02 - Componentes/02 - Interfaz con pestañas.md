@@ -53,21 +53,12 @@ Con JavaScript es necesario hacer las siguientes tareas para asegurarse de que l
 
 - Cambiar el `aria-selected` en los `a` dependiendo de a cuál se le haga clic y remover el `aria-selected` de los otros.
 - Así mismo, dependiendo de a qué `a` se le haga clic, cambiar o quitar los atributos `aria-hidden` de los tabpanel dependiendo de a qué `a` se le haga clic.
-- Es importante que al momento de presionar las teclas <kbd>Shift</kbd> + <kbd>Tab</kbd> al inicio de la sección, regrese al tab seleccionado. Para eso con JavaScript haremos que todos los `tab` menos el seleccionado tengan el atributo `tabindex="-1"`. Asumiendo que el usuario hizo clic al tab de la Sección 1, quedaría de la siguiente manera:
 
-  ```html
-  <ul role="tablist" aria-label="Navegación de secciones">
-    <li role="presentation">
-      <a role="tab" href="#section1" id="tab1" aria-selected="true">Sección 1</a>
-    </li>
-    <li role="presentation">
-      <a role="tab" href="#section2" id="tab2" tabindex="-1">Sección 2</a>
-    </li>
-    <li role="presentation">
-      <a role="tab" href="#section1" id="tab3" tabindex="-1">Sección 3</a>
-    </li>
-  </ul>
-  ```
+## Problemas conocidos
+
+- A pesar de que se puede poner el atributo `tabindex="0"` en las secciones, esto puede generar problemas con VoiceOver (el lector de pantallas de Apple) si dentro de este elemento hay otros elementos a los que se les puede hacer focus (como botones o links)
+
+  Al momento de presionar <kbd>Tab</kbd> después de tener seleccionado el tabpanel, no llevará al elemento dentro de este tabpanel, si no que llevará al siguiente elemento con focus **fuera** de este.
 
 
 
