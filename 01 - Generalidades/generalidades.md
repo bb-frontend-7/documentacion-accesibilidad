@@ -485,6 +485,30 @@ Por razones de usabilidad es importante tener en cuenta ciertas consideraciones 
   ```
 
 ---
+
+## Modo oscuro
+
+El modo oscuro se originó como una opción de accesibilidad para reducir el brillo en pantalla, lo ayuda a disminuir la carga visual y es útil para usuarios que sufren de migrañas. A pesar de que la WCAG no tiene algún tipo de estándar AA o AAA para el uso de Dark Mode, *se considera un feature de accesibilidad y es importante implementarlo en la medida de lo posible*.
+
+Un usuario puede marcar la preferencia en su navegador de si prefiere navegar usando el modo claro o el modo oscuro. Nosotros tenemos que respetar dicha preferencia. El mejor modo de hacerlo es a través de CSS usando la media query `prefers-color-scheme` que tiene tres valores: `light`, `dark` y `no-preference`.
+
+El modo más fácil de hacer un dark mode es cambiar las custom properties del proyecto para que así se genere automáticamente el modo en caso de que el usuario tenga estas preferencia. Por ejemplo:
+
+```css
+:root {
+  --clr-foreground: hsl(0 0% 0%);
+  --clr-background: hsl(0 0% 100%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --clr-background: hsl(0 0% 0%);
+    --clr-foreground: hsl(0 0% 100%);
+  }
+}
+```
+
+---
 ## Modo de Alto Contraste de Windows
 
 El Modo de Alto Contraste de Windows es una característica de accesibilidad que sobreescribe todos los colores en pantalla por tonos que tienen un contraste alto. Para activarlo, desde el menú de Windows seleccionamos *Configuración*, luego *Accesibilidad* y luego vamos al modo de *Contraste alto* y seleccionamos el que queremos usar.
